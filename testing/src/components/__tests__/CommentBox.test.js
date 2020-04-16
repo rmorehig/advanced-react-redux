@@ -17,21 +17,24 @@ it('has a text area and a button', () => {
   expect(wrapper.find('button').length).toEqual(1)
 })
 
-it('has a text area that users can type in', () => {
-  wrapper.find('textarea').simulate('change', {
-    target: { value: 'new comment' },
+describe('the text area', () => {
+  beforeEach(() => {
+    wrapper.find('textarea').simulate('change', {
+      target: { value: 'new comment' },
+    })
+    wrapper.update()
   })
-  wrapper.update()
-  expect(wrapper.find('textarea').prop('value')).toEqual('new comment')
-})
-
-it('when form is submitted, text area gets emptied', () => {
-  wrapper.find('textarea').simulate('change', {
-    target: { value: 'new comment' },
+  it('allow users to edit it', () => {
+    wrapper.find('textarea').simulate('change', {
+      target: { value: 'new comment' },
+    })
+    wrapper.update()
+    expect(wrapper.find('textarea').prop('value')).toEqual('new comment')
   })
-  wrapper.update()
 
-  wrapper.find('form').simulate('submit')
-  wrapper.update()
-  expect(wrapper.find('textarea').prop('value')).toEqual('')
+  it('gets reset on form submit', () => {
+    wrapper.find('form').simulate('submit')
+    wrapper.update()
+    expect(wrapper.find('textarea').prop('value')).toEqual('')
+  })
 })
