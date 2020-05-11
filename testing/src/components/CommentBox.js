@@ -31,4 +31,4 @@ const CommentBox = props => {
   )
 }
 
-export default requireAuth(connect(null, actions)(CommentBox))
+export default connect(null, actions)(requireAuth(CommentBox))

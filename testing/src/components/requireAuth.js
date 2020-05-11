@@ -12,7 +12,7 @@ export default Component => {
         history.push('/')
       }
     }, [auth])
-    return <Component />
+    return <Component {...props} />
   }
   const mapStateToProps = state => {
     return {
