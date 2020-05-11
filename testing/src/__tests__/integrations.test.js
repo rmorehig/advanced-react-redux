@@ -23,9 +23,10 @@ it('can fetch a list of comments and display them', done => {
     </Root>
   )
   wrapper.find('.fetch-comments').simulate('click')
-  setTimeout(() => {
+  moxios.wait(() => {
     wrapper.update()
     expect(wrapper.find('li').length).toEqual(2)
     done()
-  }, 500)
+    wrapper.unmount()
+  })
 })
