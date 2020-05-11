@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import * as actions from 'actions'
+import requireAuth from './requireAuth'
+
 const CommentBox = props => {
   const { saveComment, fetchComments } = props
   const [comment, setComment] = useState('')
+
   const handleChange = event => {
     setComment(event.target.value)
   }
@@ -28,4 +31,4 @@ const CommentBox = props => {
   )
 }
 
-export default connect(null, actions)(CommentBox)
+export default requireAuth(connect(null, actions)(CommentBox))
