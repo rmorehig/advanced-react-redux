@@ -8,10 +8,8 @@ export function saveComment(comment) {
   }
 }
 
-export async function fetchComments() {
-  const response = await axios.get(
-    'https://jsonplaceholder.typicode.com/comments'
-  )
+export function fetchComments() {
+  const response = axios.get('https://jsonplaceholder.typicode.com/comments')
   return {
     type: FETCH_COMMENTS,
     payload: response,
